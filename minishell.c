@@ -2,7 +2,7 @@
 
 int minishell(t_tools *tools)
 {
-    tools->line = readline("\033[1;50mminihell\033[34m$ \033[1m");
+    tools->line = readline("Minihell$");
     char *tmp = ft_strtrim(tools->line, " ");
 	free(tools->line);
 	tools->line = ft_strdup(tmp);
