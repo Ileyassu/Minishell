@@ -12,7 +12,7 @@ typedef enum s_tokens
     LEFT,
     RIGHT_RIGHT,
     LEFT_LEFT,
-}   t_tokens;
+} t_tokens;
 
 typedef struct s_simple_cmnds 
 {
@@ -21,9 +21,18 @@ typedef struct s_simple_cmnds
 	struct s_simple_cmds	*prev;
 } t_simple_cmnds;
 
+typedef struct s_lexer
+{
+    int index;
+    char *str;
+    t_tokens token;
+    struct s_lexer *next;
+    struct s_lexer *prev;
+}   t_lexer;
 
 typedef struct s_tools 
 {
+    t_lexer *lexer;
     char **envp;
     char *PWD;
     char *OLD_PWD;

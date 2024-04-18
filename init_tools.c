@@ -45,6 +45,7 @@ int	parse_envp(t_tools *tools)
 
 void init_tools(t_tools *tools)
 {
+    tools->lexer = NULL;
     tools->simple_cmds = NULL;
     tools->pipes = 0;
     tools->pid = NULL;

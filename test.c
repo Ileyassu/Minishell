@@ -5,7 +5,6 @@
 #include "minishell.h"
 
 int main() {
-    t_tokens token = RIGHT;
     char str[] = "test | < | sdfskf ";
     int i = 0;
     while(str[i])

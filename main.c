@@ -72,5 +72,10 @@ int main(int ac, char **av, char **envp)
     old_pwd_extractor(&tools);
     init_tools(&tools);
     minishell(&tools);
-    printf("%s\n", tools.line);
+    t_lexer *tmp = tools.lexer;
+    while(tmp)
+    {
+        printf("Index: %d Token: %d, Str: %s\n", tmp->index, tmp->token, tmp->str);
+        tmp = tmp->next;
+    }
 }
