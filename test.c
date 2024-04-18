@@ -2,14 +2,18 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+#include "minishell.h"
 
 int main() {
-    char *line;
-    while ((line = readline("Enter a line: ")) != NULL) {
-        if (*line) {
-            add_history(line);
-        }
-        free(line);
+    t_tokens token = RIGHT;
+    char str[] = "test | < | sdfskf ";
+    int i = 0;
+    while(str[i])
+    {
+        if(check_token(str[i]))
+            printf("%d\n", check_token(str[i]));
+        i++;
     }
+
     return 0;
 }

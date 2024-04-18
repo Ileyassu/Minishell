@@ -5,6 +5,15 @@
 #include <readline/history.h>
 #include "./libft/libft.h"
 
+typedef enum s_tokens
+{
+    PIPE = 1,
+    RIGHT,
+    LEFT,
+    RIGHT_RIGHT,
+    LEFT_LEFT,
+}   t_tokens;
+
 typedef struct s_simple_cmnds 
 {
     char **str;
@@ -28,5 +37,7 @@ typedef struct s_tools
 	int	reset;
 } t_tools;
 
+int add_tokens(t_tools *tools);
+int check_token(char c);
 int minishell(t_tools *tools);
 void init_tools(t_tools *tools);

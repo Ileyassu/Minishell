@@ -8,6 +8,6 @@ int minishell(t_tools *tools)
 	tools->line = ft_strdup(tmp);
     add_history(tools->line);
     free(tmp);
-
+    add_tokens(tools);
     return 1;
 }
