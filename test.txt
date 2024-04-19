@@ -1,0 +1,16 @@
+Makefile
+a.out
+check_tokens.c
+check_tokens.o
+init_tools.c
+init_tools.o
+libft
+libft.a
+main.c
+main.o
+minishell
+minishell.c
+minishell.h
+minishell.o
+test.c
+test.txt

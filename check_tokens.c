@@ -14,11 +14,11 @@ int check_token(char c)
     if (token_char(c))
     {
         if(c == '|')
-            return (PIPE);//should add node after this
+            return (PIPE);
         else if (c == '<')
-            return (LEFT); //should add node after this
+            return (LEFT);
         else if (c == '>')
-            return (RIGHT); //should add node after this
+            return (RIGHT);
     }
     return 0;
 }
@@ -65,34 +65,77 @@ int lexer (t_tokens token, char *str, t_lexer **head)
     add_back(head, lexer);
     return (1);
 }
-int add_tokens(t_tools *tools)
+
+int get_word(int i, char *str, t_tools *tools)
+{
+    int j = 0;
+    int tmp = 0;
+    while(str[i + j] && !check_token(str[i + j]))
+    {
+        printf("get word = %c\n", str[i + j]);
+        j = j + quotes_handler(j, str, '"');
+        j = j + quotes_handler(j, str, '\'');
+        if (is_space(str[i + j]))
+        {
+            //printf("%d after is space = %c\n",i + j, str[i + j]);
+            break;
+        }
+        j++;
+    }
+    tmp = lexer(0, ft_substr(str, i, j), &tools->lexer);
+    if (tmp == 0)
+        return (0);
+    return (j);
+}
+int add_tokens(t_tools *tools, int i)
+{
+    t_tokens token;
+    if(check_token(tools->line[i]) == RIGHT && check_token(tools->line[i + 1]) == RIGHT)
+    {
+        token = RIGHT_RIGHT;
+        lexer (token, ">>", &tools->lexer);
+        return (2);
+    }
+    else if(check_token(tools->line[i]) == LEFT && check_token(tools->line[i + 1]) == LEFT)
+    {
+        token = LEFT_LEFT;
+        lexer (token, "<<", &tools->lexer);
+        return (2);
+    }
+    else if(check_token(tools->line[i]))
+    {
+        token = check_token(tools->line[i]);
+        if (token == PIPE)
+            lexer (token, "|", &tools->lexer);
+        else if (token == RIGHT)
+            lexer (token, ">", &tools->lexer);
+        else if (token == LEFT)
+            lexer (token, "<", &tools->lexer);
+    }
+    i++;
+    return (1);
+}
+
+int create_lexer(t_tools *tools)
 {
     int i = 0;
-    t_tokens token;
-    while(tools->line[i])
+    int j = 0;
+    char *str = tools->line;
+    while(str[i])
     {
-        if(check_token(tools->line[i]) == RIGHT && check_token(tools->line[i + 1]) == RIGHT)
+        i = skip_spaces(i, str);
+        if(check_token(str[i]))
         {
-            token = RIGHT_RIGHT;
-            lexer (token, ">>", &tools->lexer); //should allocate for lexer->str;
+            i += add_tokens(tools, i);
         }
-        else if(check_token(tools->line[i]) == LEFT && check_token(tools->line[i + 1]) == LEFT)
+        else
         {
-            token = LEFT_LEFT;
-            lexer (token, "<<", &tools->lexer);
-        }
-        else if(check_token(tools->line[i]))
-        {
-            token = check_token(tools->line[i]);
-            if (token == PIPE)
-                lexer (token, "|", &tools->lexer);
-            else if (token == RIGHT)
-                lexer (token, ">", &tools->lexer);
-            else if (token == LEFT)
-                lexer (token, "<", &tools->lexer);
+            j = i;
+            j += get_word(i, str, tools);
+            i = j;
         }
         i++;
+        printf("str[i] = %c i = %d\n", str[i], i);
     }
-
-    return (1);
+    return (0);
 }

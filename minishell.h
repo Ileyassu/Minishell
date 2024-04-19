@@ -46,7 +46,11 @@ typedef struct s_tools
 	int	reset;
 } t_tools;
 
-int add_tokens(t_tools *tools);
+int add_tokens(t_tools *tools, int i);
 int check_token(char c);
 int minishell(t_tools *tools);
 void init_tools(t_tools *tools);
+int skip_spaces(int i, char *str);
+int is_space(char c);
+int quotes_handler(int i, char *str, char c);
+int create_lexer(t_tools *tools);
