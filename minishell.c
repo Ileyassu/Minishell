@@ -9,5 +9,6 @@ int minishell(t_tools *tools)
     add_history(tools->line);
     free(tmp);
     create_lexer(tools);
+    parse(tools);
     return 1;
 }

@@ -1,3 +1,6 @@
+#ifndef MINISHELL_H
+#define MINISHELL_H
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,12 +17,12 @@ typedef enum s_tokens
     LEFT_LEFT,
 } t_tokens;
 
-typedef struct s_simple_cmnds 
+typedef struct s_comands 
 {
     char **str;
-    struct s_simple_cmds	*next;
-	struct s_simple_cmds	*prev;
-} t_simple_cmnds;
+    struct s_comands 	*next;
+	struct s_comands 	*prev;
+} t_comands ;
 
 typedef struct s_lexer
 {
@@ -39,12 +42,21 @@ typedef struct s_tools
     char *PATH;
     char **PATHS;
     char *line;
-    struct s_simple_cmnds	*simple_cmds;
+    struct s_comands	*cmnds;
     int	pipes;
 	int	*pid;
+    t_lexer *redirections;
 	int	heredoc;
 	int	reset;
 } t_tools;
+
+typedef struct s_parser 
+{
+    t_lexer *lexer;
+    t_lexer *redirections;
+    int count_redirections;
+    t_tools *tools;
+}   t_parser;
 
 int add_tokens(t_tools *tools, int i);
 int check_token(char c);
@@ -54,3 +66,12 @@ int skip_spaces(int i, char *str);
 int is_space(char c);
 int quotes_handler(int i, char *str, char c);
 int create_lexer(t_tools *tools);
+int pipe_counter(t_tools *tools);
+int clear_node(t_lexer **lexer);
+int delete_first_node(t_lexer **lexer);
+int delete_node_by_index(t_lexer **lexer, int index);
+int chttaba (t_lexer **lexer);
+t_parser init_parser(t_lexer *lexer, t_tools *tools);
+void parse(t_tools *tools);
+
+#endif

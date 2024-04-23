@@ -46,11 +46,21 @@ int	parse_envp(t_tools *tools)
 void init_tools(t_tools *tools)
 {
     tools->lexer = NULL;
-    tools->simple_cmds = NULL;
+    tools->cmnds = NULL;
     tools->pipes = 0;
     tools->pid = NULL;
     tools->heredoc = 0;
     tools->reset = 0;
     get_path(tools);
     parse_envp(tools);
+}
+
+t_parser init_parser(t_lexer *lexer, t_tools *tools)
+{
+    t_parser parser;
+    parser.lexer = lexer;
+    parser.count_redirections = 0;
+    parser.redirections = NULL;
+    parser.tools = tools;
+    return (parser);
 }

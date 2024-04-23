@@ -2,7 +2,8 @@ SRC = main.c \
 	  init_tools.c \
 	  minishell.c \
 	  check_tokens.c \
-	  utils.c
+	  utils.c \
+	  parse.c
 
 RM = rm
 

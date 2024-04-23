@@ -68,16 +68,14 @@ int lexer (t_tokens token, char *str, t_lexer **head)
 
 int get_word(int i, char *str, t_tools *tools)
 {
-    int j = 0;
+    int j = i;
     int tmp = 0;
     while(str[i + j] && !check_token(str[i + j]))
     {
-        printf("get word = %c\n", str[i + j]);
         j = j + quotes_handler(j, str, '"');
         j = j + quotes_handler(j, str, '\'');
         if (is_space(str[i + j]))
         {
-            //printf("%d after is space = %c\n",i + j, str[i + j]);
             break;
         }
         j++;
@@ -134,8 +132,6 @@ int create_lexer(t_tools *tools)
             j += get_word(i, str, tools);
             i = j;
         }
-        i++;
-        printf("str[i] = %c i = %d\n", str[i], i);
     }
     return (0);
 }
