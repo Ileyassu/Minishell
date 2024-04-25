@@ -20,6 +20,8 @@ typedef enum s_tokens
 typedef struct s_comands 
 {
     char **str;
+    int number_of_redirections;
+    t_lexer *redirections;
     struct s_comands 	*next;
 	struct s_comands 	*prev;
 } t_comands ;
@@ -64,6 +66,9 @@ int minishell(t_tools *tools);
 void init_tools(t_tools *tools);
 int skip_spaces(int i, char *str);
 int is_space(char c);
+t_lexer *add_new_node(t_tokens token, char *str);
+void add_back(t_lexer **head, t_lexer *new);
+int lexer (t_tokens token, char *str, t_lexer **head);
 int quotes_handler(int i, char *str, char c);
 int create_lexer(t_tools *tools);
 int pipe_counter(t_tools *tools);

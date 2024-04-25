@@ -22,7 +22,7 @@ int check_token(char c)
     }
     return 0;
 }
-
+//create a new file for these
 t_lexer *add_new_node(t_tokens token, char *str)
 {
     t_lexer *node = malloc(sizeof(t_lexer));
@@ -32,7 +32,7 @@ t_lexer *add_new_node(t_tokens token, char *str)
     node->prev = NULL;
     node->index = 0;
     node->token = token;
-    node->str = str;
+    node->str = ft_strdup(str);
     return (node);
 }
 
@@ -68,21 +68,26 @@ int lexer (t_tokens token, char *str, t_lexer **head)
 
 int get_word(int i, char *str, t_tools *tools)
 {
-    int j = i;
+    int j = 0;
     int tmp = 0;
+    char *wrd;
+
+    wrd = NULL;
     while(str[i + j] && !check_token(str[i + j]))
     {
         j = j + quotes_handler(j, str, '"');
         j = j + quotes_handler(j, str, '\'');
-        if (is_space(str[i + j]))
+        if (is_space(str[i + j]) || check_token(str[i + j]))
         {
             break;
         }
         j++;
     }
-    tmp = lexer(0, ft_substr(str, i, j), &tools->lexer);
+    wrd = ft_substr(str, i, j);
+    tmp = lexer(0, wrd, &tools->lexer);
     if (tmp == 0)
         return (0);
+    free(wrd);
     return (j);
 }
 int add_tokens(t_tools *tools, int i)
@@ -132,6 +137,12 @@ int create_lexer(t_tools *tools)
             j += get_word(i, str, tools);
             i = j;
         }
+    }
+    t_lexer *tmp = tools->lexer;
+    while(tmp)
+    {
+        printf("tmp = %s\n", tmp->str);
+        tmp = tmp->next;
     }
     return (0);
 }

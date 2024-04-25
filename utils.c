@@ -44,10 +44,14 @@ int pipe_counter(t_tools *tools)
     return (counter);
 }
 
+// parser utils
+
 int clear_node(t_lexer **lexer)
 {
     if((*lexer)->str)
+    {
         free((*lexer)->str);
+    }
     (*lexer)->str = NULL;
     free((*lexer));
     *lexer = NULL;
@@ -57,10 +61,18 @@ int clear_node(t_lexer **lexer)
 int delete_first_node(t_lexer **lexer)
 {
     t_lexer *node;
-    node = (*lexer);
-    (*lexer) = (*lexer)->next;
+    t_lexer *prev;
+    prev = NULL;
+    (void)prev;
+    node = (*lexer)->next;
+    if ((*lexer)->prev)
+    {
+        prev = (*lexer)->prev;
+        node->prev = prev;
+        prev->next = node;
+    }
     clear_node(lexer);
-    (*lexer)->prev = NULL;
+    (*lexer) = node;
     return (1);
 }
 
@@ -68,7 +80,6 @@ int delete_node_by_index(t_lexer **lexer, int index)
 {
     t_lexer *node;
     t_lexer *prev;
-
     prev = NULL;
     if ((*lexer)->index == index)
     {

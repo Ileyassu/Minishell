@@ -1,5 +1,9 @@
 {
     "files.associations": {
         "minishell.C": "cpp"
-    }
+    },
+        "vscode_custom_css.imports": [
+          "file:///Users/ibenaiss/.vscode/extensions/thecodemonkey.synthwave-x-fluoromachine-epic-animations-1.4.13/synthwave-x-fluoromachine.css",
+          "file:///Users/ibenaiss/.vscode/extensions/thecodemonkey.synthwave-x-fluoromachine-epic-animations-1.4.13/epic-80s-transitions.css"
+          ]
 }
