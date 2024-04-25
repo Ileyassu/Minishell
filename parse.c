@@ -1,5 +1,21 @@
 #include "minishell.h"
 
+void cmnd_add_back(t_comands **cmnds, t_comands *new)
+{
+    t_comands *tmp;
+
+    tmp = *cmnds;
+    if(!(*cmnds))
+    {
+        *cmnds = new;
+        return ;
+    }
+    while(tmp != NULL)
+        tmp = tmp->next;
+    tmp->next = new;
+    new->prev = tmp;
+}
+
 t_comands *commands(char **str, t_parser *parser)
 {
     t_comands *new_cmd;
@@ -46,9 +62,9 @@ t_comands *init_comands(t_parser *parser)
     {
         if (tmp->str)
         {
-        str[i] = ft_strdup(tmp->str);
-        delete_node_by_index(&parser->lexer, tmp->index);
-        tmp = parser->lexer;
+            str[i] = ft_strdup(tmp->str);
+            delete_node_by_index(&parser->lexer, tmp->index);
+            tmp = parser->lexer;
         }
         arg_size--;
     }
@@ -56,7 +72,7 @@ t_comands *init_comands(t_parser *parser)
     return (cmd);
 }
 
-void parse(t_tools *tools)
+int parse(t_tools *tools)
 {
     t_comands *cmnd;
     t_parser parser;
@@ -76,6 +92,7 @@ void parse(t_tools *tools)
         if (!tools->cmnds)
             tools->cmnds = cmnd;
         else
-            //cmnd add back;
+            cmnd_add_back(&tools->cmnds, cmnd);
     }
+    return 1;
 }

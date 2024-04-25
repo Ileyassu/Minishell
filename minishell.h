@@ -77,6 +77,6 @@ int delete_first_node(t_lexer **lexer);
 int delete_node_by_index(t_lexer **lexer, int index);
 int chttaba (t_lexer **lexer);
 t_parser init_parser(t_lexer *lexer, t_tools *tools);
-void parse(t_tools *tools);
+int parse(t_tools *tools);
 
 #endif
