@@ -22,7 +22,7 @@ int check_token(char c)
     }
     return 0;
 }
-//create a new file for these
+
 t_lexer *add_new_node(t_tokens token, char *str)
 {
     t_lexer *node = malloc(sizeof(t_lexer));
@@ -54,7 +54,7 @@ void add_back(t_lexer **head, t_lexer *new)
         tmp = tmp->next;
     tmp->next = new;
     new->prev = tmp;
-    new->index = tmp->index + 1;
+    new->index = tmp->index++;
 }
 int lexer (t_tokens token, char *str, t_lexer **head)
 {
@@ -141,7 +141,6 @@ int create_lexer(t_tools *tools)
     t_lexer *tmp = tools->lexer;
     while(tmp)
     {
-        printf("tmp = %s\n", tmp->str);
         tmp = tmp->next;
     }
     return (0);

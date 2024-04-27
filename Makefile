@@ -3,7 +3,10 @@ SRC = main.c \
 	  minishell.c \
 	  check_tokens.c \
 	  utils.c \
-	  parse.c
+	  redirections.c \
+	  parse.c \
+	  reset.c \
+	  errors.c
 
 RM = rm
 

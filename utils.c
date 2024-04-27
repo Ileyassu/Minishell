@@ -60,20 +60,34 @@ int clear_node(t_lexer **lexer)
 
 int delete_first_node(t_lexer **lexer)
 {
-    t_lexer *node;
-    t_lexer *prev;
-    prev = NULL;
-    (void)prev;
-    node = (*lexer)->next;
-    if ((*lexer)->prev)
-    {
+    if (lexer == NULL || *lexer == NULL) {
+        return 0;
+    }
+
+    t_lexer *node = (*lexer)->next;
+    t_lexer *prev = (*lexer)->prev;
+
+    if (node == NULL) {
+        return 0;
+    }
+
+    if ((*lexer)->prev) {
         prev = (*lexer)->prev;
         node->prev = prev;
-        prev->next = node;
+        if (prev != NULL)
+            prev->next = node;
     }
+
+    t_lexer *node_copy = node;
     clear_node(lexer);
-    (*lexer) = node;
-    return (1);
+
+    if (node_copy != NULL) {
+        (*lexer) = node_copy;
+    } else {
+        return 0;
+    }
+
+    return 1;
 }
 
 int delete_node_by_index(t_lexer **lexer, int index)
@@ -81,6 +95,11 @@ int delete_node_by_index(t_lexer **lexer, int index)
     t_lexer *node;
     t_lexer *prev;
     prev = NULL;
+    printf("delete node\n");
+    if ((*lexer)->next != NULL)
+    {
+        return 0;
+    }
     if ((*lexer)->index == index)
     {
         delete_first_node(lexer);

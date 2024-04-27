@@ -7,7 +7,10 @@ char **dup_env(char **envp)
     char **dup;
     while(envp[len] != NULL)
         len++;
-    dup = malloc(len + 1);
+    printf("%d\n", len);
+    dup =  malloc((len + 1) * sizeof(char *));
+    if (!dup)
+        return NULL;
     while(envp[i])
     {
         dup[i] = ft_strdup(envp[i]);
@@ -67,15 +70,18 @@ int main(int ac, char **av, char **envp)
     (void)ac;
     (void)av;
     t_tools tools;
+    if (!envp)
+        return 1;
     tools.envp = dup_env(envp);
     pwd_extractor(&tools);
     old_pwd_extractor(&tools);
     init_tools(&tools);
+    printf("trtr\n");
     minishell(&tools);
-    t_lexer *tmp = tools.lexer;
-    while(tmp)
-    {
-        printf("Index: %d Token: %d, Str: %s\n", tmp->index, tmp->token, tmp->str);
-        tmp = tmp->next;
-    }
+    //t_lexer *tmp = tools.lexer;
+    // while(tmp)
+    // {
+    //     printf("Index: %d Token: %d, Str: %s\n", tmp->index, tmp->token, tmp->str);
+    //     tmp = tmp->next;
+    // }
 }

@@ -58,6 +58,7 @@ void init_tools(t_tools *tools)
 t_parser init_parser(t_lexer *lexer, t_tools *tools)
 {
     t_parser parser;
+    parser.lexer = NULL;
     parser.lexer = lexer;
     parser.count_redirections = 0;
     parser.redirections = NULL;

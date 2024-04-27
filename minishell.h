@@ -17,15 +17,6 @@ typedef enum s_tokens
     LEFT_LEFT,
 } t_tokens;
 
-typedef struct s_comands 
-{
-    char **str;
-    int number_of_redirections;
-    t_lexer *redirections;
-    struct s_comands 	*next;
-	struct s_comands 	*prev;
-} t_comands ;
-
 typedef struct s_lexer
 {
     int index;
@@ -34,6 +25,15 @@ typedef struct s_lexer
     struct s_lexer *next;
     struct s_lexer *prev;
 }   t_lexer;
+
+typedef struct s_comands 
+{
+    char **str;
+    int number_of_redirections;
+    t_lexer *redirections;
+    struct s_comands 	*next;
+	struct s_comands 	*prev;
+} t_comands ;
 
 typedef struct s_tools 
 {
@@ -77,6 +77,13 @@ int delete_first_node(t_lexer **lexer);
 int delete_node_by_index(t_lexer **lexer, int index);
 int chttaba (t_lexer **lexer);
 t_parser init_parser(t_lexer *lexer, t_tools *tools);
+void cmnd_add_back(t_comands **cmnds, t_comands *new);
+t_comands *commands(char **str, t_parser *parser);
+void add_redirection_node(t_lexer *tmp, t_parser *parser);
+void remove_redirections (t_parser *parser);
+void cmnd_clear (t_comands **cmnd);
+int double_token_error(t_tokens token, t_tools *tools);
 int parse(t_tools *tools);
+int reset_tools(t_tools *tools);
 
 #endif
