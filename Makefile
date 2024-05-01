@@ -1,12 +1,15 @@
 SRC = main.c \
-	  init_tools.c \
 	  minishell.c \
-	  check_tokens.c \
-	  utils.c \
-	  redirections.c \
-	  parse.c \
-	  reset.c \
-	  errors.c
+	  errors.c \
+	  ft_reset.c \
+	  tools.c \
+	  lexer/lexer_tools.c \
+	  lexer/make_tokens.c \
+	  parsing/command.c \
+	  parsing/init_command.c \
+	  parsing/parse.c \
+	  parsing/parsing_init.c \
+	  parsing/parsing_tools.c
 
 RM = rm
 
