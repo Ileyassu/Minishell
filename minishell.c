@@ -104,9 +104,16 @@ int	minishell_loop(t_tools *tools)
 	parser(tools);
 	//prepare_executor(tools);
 	t_simple_cmds *tmpp = tools->simple_cmds;
+	int i = 0;
 	while(tmpp)
 	{
-		printf("%d\n", tmpp->num_redirections);
+		i = 0;
+		while(tmpp->str[i])
+		{
+			printf("%s == %s == \n", tmpp->str[i], tmpp->redirections->str);
+			i++;
+		}
+		printf("next\n");
 		tmpp = tmpp->next;
 	}
 	reset_tools(tools);
