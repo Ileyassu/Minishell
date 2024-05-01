@@ -77,11 +77,5 @@ int	token_reader(t_tools *tools)
 			return (0);
 		i += j;
 	}
-	t_tools *tmp = tools;
-	while(tmp->lexer_list)
-	{
-		printf("lexer = %s\n", tmp->lexer_list->str);
-		tmp->lexer_list = tmp->lexer_list->next;
-	}
 	return (1);
 }

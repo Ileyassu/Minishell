@@ -103,6 +103,12 @@ int	minishell_loop(t_tools *tools)
 	token_reader(tools);
 	parser(tools);
 	//prepare_executor(tools);
+	t_simple_cmds *tmpp = tools->simple_cmds;
+	while(tmpp)
+	{
+		printf("%d\n", tmpp->num_redirections);
+		tmpp = tmpp->next;
+	}
 	reset_tools(tools);
 	return (1);
 }

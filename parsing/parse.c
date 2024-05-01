@@ -23,11 +23,5 @@ int	parser(t_tools *tools)
 			ft_simple_cmdsadd_back(&tools->simple_cmds, node);
 		tools->lexer_list = parser_tools.lexer_list;
 	}
-	t_simple_cmds *tmp = node;
-	while(tmp)
-	{
-		printf("str = %s\nredirection = %s\nnum of redirections = %d\n", tmp->str[0], tmp->redirections->str, tmp->num_redirections);
-		tmp = tmp->next;
-	}
 	return (EXIT_SUCCESS);
 }
