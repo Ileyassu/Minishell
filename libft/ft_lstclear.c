@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_listclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,19 @@
 
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void (*del)(void*))
+void ft_listclear(t_list **list, void (*del)(void*))
 {
     t_list *current;
     t_list *next;
 
-    current = *lst;
+    current = *list;
     while(current)
     {   next = current -> next;
         (*del)(current -> content);
         free(current); 
         current = next;
     }
-    *lst = NULL;
+    *list = NULL;
 }
 /*
 void deletecontent(void *content)
@@ -33,17 +33,17 @@ void deletecontent(void *content)
 }
 int main()
 {
-    t_list *head = ft_lstnew(strdup("0"));
-    t_list *new1 = ft_lstnew(strdup("1"));
-    t_list *new2 = ft_lstnew(strdup("2"));
-    t_list *new3 = ft_lstnew(strdup("3"));
-    ft_lstadd_front(&head, new1);
-    ft_lstadd_front(&head, new2);
-    ft_lstadd_front(&head, new3);
-    int i = ft_lstsize(head);
-    ft_lstclear(&head, deletecontent);
+    t_list *head = ft_listnew(strdup("0"));
+    t_list *new1 = ft_listnew(strdup("1"));
+    t_list *new2 = ft_listnew(strdup("2"));
+    t_list *new3 = ft_listnew(strdup("3"));
+    ft_listadd_front(&head, new1);
+    ft_listadd_front(&head, new2);
+    ft_listadd_front(&head, new3);
+    int i = ft_listsize(head);
+    ft_listclear(&head, deletecontent);
     //free(new1);
-    //ft_lstdelone(new1, deletecontent);
+    //ft_listdelone(new1, deletecontent);
     //printf("%p\n", new1);
     //printf("i = %d\n", i);
     char *s = malloc(3);

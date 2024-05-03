@@ -35,13 +35,13 @@ SRC = \
 	ft_putnbr_fd.c
 
 SRC_BONUS =	\
-		ft_lstadd_front.c \
-		ft_lstclear.c \
-		ft_lstdelone.c \
-		ft_lstiter.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
-		ft_lstadd_back.c
+		ft_listadd_front.c \
+		ft_listclear.c \
+		ft_listdelone.c \
+		ft_listiter.c \
+		ft_listnew.c \
+		ft_listsize.c \
+		ft_listadd_back.c
 
 NAME = libft.a
 

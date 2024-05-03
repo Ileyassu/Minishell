@@ -6,22 +6,22 @@ int	parser(t_tools *tools)
 	t_parser_tools	parser_tools;
 
 	tools->simple_cmds = NULL;
-	count_pipes(tools->lexer_list, tools);
-	if(tools->lexer_list->token == PIPE)
+	count_pipes(tools->lexer, tools);
+	if(tools->lexer->token == PIPE)
     {
         exit(1);
     }  
-	while (tools->lexer_list)
+	while (tools->lexer)
 	{
-		if (tools->lexer_list && tools->lexer_list->token == PIPE)
-			ft_lexerdelone(&tools->lexer_list, tools->lexer_list->i);
-		parser_tools = init_parser_tools(tools->lexer_list, tools);
+		if (tools->lexer && tools->lexer->token == PIPE)
+			delete_lexer_node(&tools->lexer, tools->lexer->i);
+		parser_tools = init_parser_tools(tools->lexer, tools);
 		node = initialize_cmd(&parser_tools);
 		if (!tools->simple_cmds)
 			tools->simple_cmds = node;
 		else
-			ft_simple_cmdsadd_back(&tools->simple_cmds, node);
-		tools->lexer_list = parser_tools.lexer_list;
+			cmnd_add_back(&tools->simple_cmds, node);
+		tools->lexer = parser_tools.lexer;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }

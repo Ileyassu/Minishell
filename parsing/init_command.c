@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-t_simple_cmds	*ft_simple_cmdsnew(char **str,
+t_simple_cmds	*new_command(char **str,
 	int num_redirections, t_lexer *redirections)
 {
 	t_simple_cmds	*new_element;
@@ -24,31 +24,31 @@ t_simple_cmds	*ft_simple_cmdsnew(char **str,
 // 	t_lexer	*tmp;
 
 // 	i = 0;
-// 	rm_redirections(parser_tools);
-// 	arg_size = count_args(parser_tools->lexer_list);
+// 	remove_redirections(parser_tools);
+// 	arg_size = count_args(parser_tools->lexer);
 // 	str = ft_calloc(arg_size + 1, sizeof(char *));
-// 	tmp = parser_tools->lexer_list;
+// 	tmp = parser_tools->lexer;
 // 	while (arg_size > 0)
 // 	{
 // 		if (tmp->str)
 // 		{
 // 			str[i++] = ft_strdup(tmp->str);
-// 			ft_lexerdelone(&parser_tools->lexer_list, tmp->i);
-// 			tmp = parser_tools->lexer_list;
+// 			delete_lexer_node(&parser_tools->lexer, tmp->i);
+// 			tmp = parser_tools->lexer;
 // 		}
 // 		arg_size--;
 // 	}
-// 	return (ft_simple_cmdsnew(str,
+// 	return (new_command(str,
 // 			parser_tools->num_redirections, parser_tools->redirections));
 // }
-void	ft_simple_cmdsadd_back(t_simple_cmds **lst, t_simple_cmds *new)
+void	cmnd_add_back(t_simple_cmds **list, t_simple_cmds *new)
 {
 	t_simple_cmds	*tmp;
 
-	tmp = *lst;
-	if (*lst == NULL)
+	tmp = *list;
+	if (*list == NULL)
 	{
-		*lst = new;
+		*list = new;
 		return ;
 	}
 	while (tmp->next != NULL)

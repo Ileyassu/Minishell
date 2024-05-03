@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:46:14 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/23 14:56:55 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:38:14 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
-t_list *ft_lstnew(void *content);
-void ft_lstadd_front(t_list **lst, t_list *new);
-void ft_lstadd_back(t_list **lst, t_list *new);
-void    ft_lstdelone(t_list *lst, void (*del)(void*));
-int ft_lstsize(t_list *lst);
-t_list *ft_lstlast(t_list *lst);
-void ft_lstclear(t_list **lst, void (*del)(void*));
+t_list *ft_listnew(void *content);
+void ft_listadd_front(t_list **list, t_list *new);
+void ft_listadd_back(t_list **list, t_list *new);
+void    ft_listdelone(t_list *list, void (*del)(void*));
+int ft_listsize(t_list *list);
+t_list *ft_listlast(t_list *list);
+void ft_listclear(t_list **list, void (*del)(void*));
 
 #endif

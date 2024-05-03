@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_listsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,31 +12,31 @@
 
 #include "libft.h"
 
-int ft_lstsize(t_list *lst)
+int ft_listsize(t_list *list)
 {
     int i;
 
     i = 0;
-    while(lst)
+    while(list)
     {
         i++;
-        lst = lst -> next;
+        list = list -> next;
     }
     return (i);
 }
 /*
 int main()
 {
-    t_list *head = ft_lstnew("wqwq");
-    t_list *new1 = ft_lstnew("asas");
-    t_list *new2 = ft_lstnew("asasa");
-    t_list *new3 = ft_lstnew("asasaaaaaaa");
+    t_list *head = ft_listnew("wqwq");
+    t_list *new1 = ft_listnew("asas");
+    t_list *new2 = ft_listnew("asasa");
+    t_list *new3 = ft_listnew("asasaaaaaaa");
 
-    ft_lstadd_front(&head, new1);
-    ft_lstadd_front(&head, new2);
-    ft_lstadd_front(&head, new3);
+    ft_listadd_front(&head, new1);
+    ft_listadd_front(&head, new2);
+    ft_listadd_front(&head, new3);
 
-    int i = ft_lstsize(head);
+    int i = ft_listsize(head);
     printf("i = %d\n", i);
 }
 */

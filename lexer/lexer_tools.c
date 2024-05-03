@@ -1,13 +1,13 @@
 #include "../minishell.h"
 
-void	ft_lexeradd_back(t_lexer **lst, t_lexer *new)
+void	ft_lexeradd_back(t_lexer **list, t_lexer *new)
 {
 	t_lexer	*tmp;
 
-	tmp = *lst;
-	if (*lst == NULL)
+	tmp = *list;
+	if (*list == NULL)
 	{
-		*lst = new;
+		*list = new;
 		return ;
 	}
 	while (tmp->next != NULL)
@@ -32,68 +32,68 @@ t_lexer	*ft_lexernew(char *str, int token)
 	return (new_element);
 }
 
-int	add_node(char *str, t_tokens token, t_lexer **lexer_list)
+int	add_node(char *str, t_tokens token, t_lexer **lexer)
 {
 	t_lexer	*node;
 
 	node = ft_lexernew(str, token);
 	if (!node)
 		return (0);
-	ft_lexeradd_back(lexer_list, node);
+	ft_lexeradd_back(lexer, node);
 	return (1);
 }
 
-void	ft_lexerclear(t_lexer **lst)
+void	ft_lexerclear(t_lexer **list)
 {
 	t_lexer	*tmp;
 
-	if (!*lst)
+	if (!*list)
 		return ;
-	while (*lst)
+	while (*list)
 	{
-		tmp = (*lst)->next;
-		if ((*lst)->str)
-			free((*lst)->str);
-		free(*lst);
-		*lst = tmp;
+		tmp = (*list)->next;
+		if ((*list)->str)
+			free((*list)->str);
+		free(*list);
+		*list = tmp;
 	}
-	*lst = NULL;
+	*list = NULL;
 }
 
-t_lexer	*ft_lexerclear_one(t_lexer **lst)
+t_lexer	*ft_lexerclear_one(t_lexer **list)
 {
-	if ((*lst)->str)
+	if ((*list)->str)
 	{
-		free((*lst)->str);
-		(*lst)->str = NULL;
+		free((*list)->str);
+		(*list)->str = NULL;
 	}
-	free(*lst);
-	*lst = NULL;
+	free(*list);
+	*list = NULL;
 	return (NULL);
 }
 
-void	ft_lexerdel_first(t_lexer **lst)
+void	ft_lexerdel_first(t_lexer **list)
 {
 	t_lexer	*node;
 
-	node = *lst;
-	*lst = node->next;
+	node = *list;
+	*list = node->next;
 	ft_lexerclear_one(&node);
-	if (*lst)
-		(*lst)->prev = NULL;
+	if (*list)
+		(*list)->prev = NULL;
 }
 
-void	ft_lexerdelone(t_lexer **lst, int key)
+void	delete_lexer_node(t_lexer **list, int key)
 {
 	t_lexer	*node;
 	t_lexer	*prev;
 	t_lexer	*start;
 
-	start = *lst;
+	start = *list;
 	node = start;
-	if ((*lst)->i == key)
+	if ((*list)->i == key)
 	{
-		ft_lexerdel_first(lst);
+		ft_lexerdel_first(list);
 		return ;
 	}
 	while (node && node->i != key)
@@ -108,7 +108,7 @@ void	ft_lexerdelone(t_lexer **lst, int key)
 	if (prev->next)
 		prev->next->prev = prev;
 	ft_lexerclear_one(&node);
-	*lst = start;
+	*list = start;
 }
 
 t_tokens	check_token(int c)

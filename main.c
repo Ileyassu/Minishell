@@ -14,17 +14,17 @@ char	*find_path(char **envp)
 	return (ft_strdup("\0"));
 }
 
-void	free_arr(char **split_arr)
+void	free_arr(char **str)
 {
 	int	i;
 
 	i = 0;
-	while (split_arr[i])
+	while (str[i])
 	{
-		free(split_arr[i]);
+		free(str[i]);
 		i++;
 	}
-	free(split_arr);
+	free(str);
 }
 
 char	**ft_arrdup(char **arr)
@@ -70,30 +70,6 @@ int	find_pwd(t_tools *tools)
 	return (1);
 }
 
-// int	parse_envp(t_tools *tools)
-// {
-// 	char	*path_from_envp;
-// 	int		i;
-// 	char	*tmp;
-
-// 	path_from_envp = find_path(tools->envp);
-// 	tools->paths = ft_split(path_from_envp, ':');
-// 	free(path_from_envp);
-// 	i = 0;
-// 	while (tools->paths[i])
-// 	{
-// 		if (ft_strncmp(&tools->paths[i][ft_strlen(tools->paths[i]) - 1],
-// 			"/", 1) != 0)
-// 		{
-// 			tmp = ft_strjoin(tools->paths[i], "/");
-// 			free(tools->paths[i]);
-// 			tools->paths[i] = tmp;
-// 		}
-// 		i++;
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
-
 void old_pwd_extractor(t_tools *tools)
 {
     int i = 0;
@@ -117,7 +93,7 @@ void old_pwd_extractor(t_tools *tools)
         i++;
     }
 }
-int main(int ac, char **av, char **envp) 
+int main(int ac, char **envp, char **av) 
 {
     (void)ac;
     (void)av;
@@ -127,8 +103,8 @@ int main(int ac, char **av, char **envp)
     tools.envp = ft_arrdup(envp);
     find_pwd(&tools);
     old_pwd_extractor(&tools);
-    implement_tools(&tools);
-    minishell_loop(&tools);
+    init_tools(&tools);
+    minishell(&tools);
     //t_lexer *tmp = tools.lexer;
     // while(tmp)
     // {

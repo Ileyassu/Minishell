@@ -1,10 +1,10 @@
 #include "../minishell.h"
 
-void	count_pipes(t_lexer *lexer_list, t_tools *tools)
+void	count_pipes(t_lexer *lexer, t_tools *tools)
 {
 	t_lexer	*tmp;
 
-	tmp = lexer_list;
+	tmp = lexer;
 	tools->pipes = 0;
 	while (tmp)
 	{

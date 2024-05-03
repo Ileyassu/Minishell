@@ -2,13 +2,13 @@
 
 int	reset_tools(t_tools *tools)
 {
-	ft_simple_cmdsclear(&tools->simple_cmds);
+	clear_simple_cmnd(&tools->simple_cmds);
 	free(tools->args);
 	if (tools->pid)
 		free(tools->pid);
 	free_arr(tools->paths);
-	implement_tools(tools);
+	init_tools(tools);
 	tools->reset = true;
-	minishell_loop(tools);
+	minishell(tools);
 	return (1);
 }
