@@ -6,16 +6,16 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:21:38 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:56:22 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node	*collect_cmd(t_lexer *lexer)
+t_parse_node	*collect_cmd(t_lexer *lexer)
 {
 	t_cmd			*elem;
-	t_parser_node	*node;
+	t_parse_node	*node;
 	t_rdr_node		*rdrlst;
 	t_token			token;
 
@@ -29,7 +29,7 @@ t_parser_node	*collect_cmd(t_lexer *lexer)
 			free(token.pos);
 		if (token.type == WLDC)
 			wc_clear(&token.wildcard);
-		elem = cmd_ccomponents(lexer, &rdrlst);
+		elem = cmd_components(lexer, &rdrlst);
 	}
 	if ((elem || rdrlst) && rdrlst != MISSMATCH)
 		node = node_create(&elem, rdrlst, CMD);

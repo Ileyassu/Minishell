@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:41:49 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/12 23:44:04 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_if_all_digit(char *arg)
 	return (1);
 }
 
-void	exit_cmd(t_parser_node *root)
+void	exit_cmd(t_parse_node *root)
 {
 	unsigned long long	result;
 
@@ -75,5 +75,5 @@ void	exit_cmd(t_parser_node *root)
 	}
 	else if (root->ac > 2 && check_if_all_digit(root->av[1]))
 		printf("minishell: exit: %s: too many arguments\n", root->av[1]);
-	g_lbv.exit_status = 256;
+	global_var.exit_status = 256;
 }

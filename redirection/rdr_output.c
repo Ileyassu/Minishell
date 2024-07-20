@@ -6,13 +6,13 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:26:40 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:26:42 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "redirection.h"
 
-void	execute_rdr_output_cmd(t_parser_node *node, t_out_in_file *file)
+void	execute_rdr_output_cmd(t_parse_node *node, t_out_in_file *file)
 {
 	int	pid;
 
@@ -29,7 +29,7 @@ void	execute_rdr_output_cmd(t_parser_node *node, t_out_in_file *file)
 	waitpid(pid, NULL, 0);
 }
 
-int	get_output_file(t_parser_node *node, t_rdr_node *head, t_out_in_file *file)
+int	get_output_file(t_parse_node *node, t_rdr_node *head, t_out_in_file *file)
 {
 	if (head->type == RD_OUT && file->input_file != -1 \
 		&& file->output_file != -1)
@@ -57,7 +57,7 @@ int	get_output_file(t_parser_node *node, t_rdr_node *head, t_out_in_file *file)
 	return (0);
 }
 
-void	*rdr_output(t_parser_node *n, t_rdr_node *l, t_out_in_file *file, int v)
+void	*rdr_output(t_parse_node *n, t_rdr_node *l, t_out_in_file *file, int v)
 {
 	t_rdr_node	*head;
 

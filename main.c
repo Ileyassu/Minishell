@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 01:01:56 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/20 01:01:59 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 18:44:53 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,57 @@
 #include <signal.h>
 #include <sys/signal.h>
 
-t_glb_v	g_lbv;
+t_glb_v	global_var;
 
 void	check_sigquit_(void)
 {
-	if (WIFSIGNALED(g_lbv.exit_status))
+	if (WIFSIGNALED(global_var.exit_status))
 	{
-		if (g_lbv.check_sigquit == 0)
-			g_lbv.exit_status = 130 * 256;
-		else if (g_lbv.check_sigquit == 1)
-			g_lbv.exit_status = 131 * 256;
+		if (global_var.check_sigquit == 0)
+			global_var.exit_status = 130 * 256;
+		else if (global_var.check_sigquit == 1)
+			global_var.exit_status = 131 * 256;
 	}
 }
 
-void	minishell(t_parser_node *tree, char *line)
+void	minishell(t_parse_node *list, char *line)
 {
 	if (ft_strcmp(line, "") != 0)
 		add_history(line);
-	if (g_lbv.check_signal == 0)
+	if (global_var.check_signal == 0)
 	{
-		tree = parse(line);
-		if (tree)
+		list = parse(line);
+		if (list)
 		{
-			if (g_lbv.check_signal == 0)
-				execution(tree);
-			node_del(&tree);
+			if (global_var.check_signal == 0)
+				execution(list);
+			node_del(&list);
 		}
 	}
-	g_lbv.check_signal = 0;
+	global_var.check_signal = 0;
 	free(line);
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int ac, char **argv, char **env)
 {
-	char			*line;
-	t_parser_node	*tree;
+	t_parse_node	*list;
 	const char		*prompt;
+	char			*line;
 
-	tree = NULL;
+	list = NULL;
 	intialize_signal();
-	if (argc < 2 && !argv[1])
+	if (ac < 2 && !argv[1])
 	{
-		g_lbv.list = create_env(env);
-		ft_list_remove_if(&g_lbv.list, "OLDPWD");
-		while (true)
+		global_var.list = create_env(env);
+		ft_list_remove_if(&global_var.list, "OLDPWD");
+		while (1337)
 		{
-			prompt = get_wd(getcwd(NULL, 0));
+			prompt = wild_card_getter(getcwd(NULL, 0));
 			line = readline(prompt);
 			free((void *)prompt);
 			if (line == NULL)
 				break ;
-			minishell(tree, line);
+			minishell(list, line);
 		}
 		printf("exit\n");
 		return (free_env_list(), 0);

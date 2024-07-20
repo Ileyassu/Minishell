@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "minishell.C": "cpp"
+        "minishell.C": "cpp",
+        "stdlib.h": "c"
     },
         "vscode_custom_css.imports": [
           "file:///Users/ibenaiss/.vscode/extensions/thecodemonkey.synthwave-x-fluoromachine-epic-animations-1.4.13/synthwave-x-fluoromachine.css",

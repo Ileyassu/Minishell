@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 20:24:41 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_herdoc_file(t_rdr_node *rdrlst)
 	return (herdoc_file->file);
 }
 
-void	execute_heredoc_cmd(t_parser_node *node, t_out_in_file *file)
+void	execute_heredoc_cmd(t_parse_node *node, t_out_in_file *file)
 {
 	int	pid;
 
@@ -45,7 +45,7 @@ void	execute_heredoc_cmd(t_parser_node *node, t_out_in_file *file)
 	waitpid(pid, NULL, 0);
 }
 
-void	*herdoc_(t_parser_node *n, t_rdr_node *lst, t_out_in_file *file, int v)
+void	*herdoc_(t_parse_node *n, t_rdr_node *lst, t_out_in_file *file, int v)
 {
 	t_rdr_node	*head;
 	char		*tmp;

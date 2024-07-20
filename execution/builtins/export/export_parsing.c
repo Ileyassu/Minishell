@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 23:51:32 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/13 20:36:46 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	*concatenat_variable(t_env_node *node)
 	free(node->name);
 	node->name = tmp_name;
 	node->len = ft_strlen(node->name);
-	node_name = env_find(g_lbv.list, node->name, -1);
+	node_name = env_find(global_var.list, node->name, -1);
 	if (node_name && node->content[0] != '\0' \
 	&& ft_strcmp(node->content, "\"\""))
 	{
@@ -97,7 +97,7 @@ int	parss_export_variable(t_env_node *node, int _op_error)
 	{
 		if (check_parse == -1)
 			return (-1);
-		g_lbv.exit_status = 256;
+		global_var.exit_status = 256;
 		return (1);
 	}
 	if (node->name[len - 1] == '+' && node->len != 1)

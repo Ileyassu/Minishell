@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 23:45:05 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/14 13:25:00 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_env_node	get_max_variable(void)
 	max.name = "";
 	max.content = "";
 	max.len = 0;
-	head = g_lbv.list;
+	head = global_var.list;
 	while (head)
 	{
 		if (ft_strcmp(head->name, max.name) >= 0)
@@ -39,7 +39,7 @@ t_env_node	get_min_variable(t_env_node min)
 	int			*tmp_len;
 
 	tmp_len = NULL;
-	tmp = g_lbv.list;
+	tmp = global_var.list;
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, min.name) <= 0 && tmp->len != -1)
@@ -57,7 +57,7 @@ void	intialise_len_variable(void)
 {
 	t_env_node	*head;
 
-	head = g_lbv.list;
+	head = global_var.list;
 	while (head)
 	{
 		head->len = ft_strlen(head->name);
@@ -72,7 +72,7 @@ void	print_sort_list(void)
 	t_env_node	max;
 
 	max = get_max_variable();
-	tmp = g_lbv.list;
+	tmp = global_var.list;
 	while (tmp)
 	{
 		min = get_min_variable(max);

@@ -6,16 +6,16 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:21:22 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node	*ft_pipe_line(t_lexer *lexer)
+t_parse_node	*ft_pipe_line(t_lexer *lexer)
 {
-	t_parser_node	*cmd;
-	t_parser_node	*pipe;
+	t_parse_node	*cmd;
+	t_parse_node	*pipe;
 
 	cmd = collect_cmd(lexer);
 	if (cmd && cmd != MISSMATCH)

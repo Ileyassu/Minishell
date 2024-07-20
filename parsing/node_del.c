@@ -6,13 +6,13 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:22:07 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	node_clear(t_parser_node *node)
+void	node_clear(t_parse_node *node)
 {
 	int	i;
 
@@ -27,9 +27,9 @@ void	node_clear(t_parser_node *node)
 	}
 }
 
-void	node_del(t_parser_node **node)
+void	node_del(t_parse_node **node)
 {
-	t_parser_node	*tmp;
+	t_parse_node	*tmp;
 
 	tmp = *node;
 	if (tmp)

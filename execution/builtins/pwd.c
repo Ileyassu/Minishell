@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:41:57 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/13 22:47:51 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include<stdio.h>
 
-void	pwd(t_parser_node *root)
+void	pwd(t_parse_node *root)
 {
 	char	*cwd;
 	char	buffer[4096];
@@ -27,11 +27,11 @@ void	pwd(t_parser_node *root)
 			printf("%s\n", buffer);
 		else
 			printf("%s\n", cwd);
-		g_lbv.exit_status = 0;
+		global_var.exit_status = 0;
 	}
 	else
 	{
-		g_lbv.exit_status = 256;
+		global_var.exit_status = 256;
 		printf("minishel v0.1: pwd: %s: illegal option\n", root->av[1]);
 		printf("Usage: pwd []\n");
 	}

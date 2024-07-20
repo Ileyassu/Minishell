@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:26:44 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:26:46 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../execution/execution.h"
 #include <fcntl.h>
 
-void	redirection(t_parser_node *node)
+void	redirection(t_parse_node *node)
 {
 	t_out_in_file	in_out_file;
 

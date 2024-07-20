@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:21:47 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 20:59:30 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	heredoc_handler(char *f, char *delim, bool expand)
 	line = readline(">");
 	while (line)
 	{
-		if (g_lbv.check_signal == 1 || !ft_strcmp(line, delim))
+		if (global_var.check_signal == 1 || !ft_strcmp(line, delim))
 			break ;
 		if (get_heredoc_l(f, fd, line, expand))
 			return (-1);

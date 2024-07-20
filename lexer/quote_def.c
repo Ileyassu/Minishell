@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:49:49 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/11 10:03:08 by mel-hous         ###   ########.fr       */
+/*   Updated: 2024/07/20 15:04:13 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*quote_def(char	*str)
 
 	s = str;
 	mode = 0;
-	while (*s)
-	{
+	while (*s)							//mode = 1
+	{                                //-1"fsdfsdfsdf"-1
 		mode = change_mode(mode, *s);
 		if (*s == 34 && (mode == 2 || mode == 0))
 			*s = DEF_DOUBEL_Q;

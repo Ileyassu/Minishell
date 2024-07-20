@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:41:55 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/14 00:58:29 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parse_unset_variable(char *argv, int *check, int *check_exit_status)
 	}
 }
 
-void	unset(t_parser_node *root, int index)
+void	unset(t_parse_node *root, int index)
 {
 	int	k;
 	int	check_exit_status;
@@ -50,7 +50,7 @@ void	unset(t_parser_node *root, int index)
 	{
 		if (root->av[1][0] == '-')
 		{
-			g_lbv.exit_status = 512;
+			global_var.exit_status = 512;
 			printf("minishell: unset: %s: invalid option\n", root->av[1]);
 			printf("unset: usage: unset [-f] [name ...]\n");
 		}
@@ -60,11 +60,11 @@ void	unset(t_parser_node *root, int index)
 			{
 				k = 0;
 				parse_unset_variable(root->av[index], &k, &check_exit_status);
-				if (k == 0 && env_find(g_lbv.list, root->av[index], -1))
-					ft_list_remove_if(&g_lbv.list, root->av[index]);
+				if (k == 0 && env_find(global_var.list, root->av[index], -1))
+					ft_list_remove_if(&global_var.list, root->av[index]);
 				index++;
 			}
-		g_lbv.exit_status = check_exit_status;
+		global_var.exit_status = check_exit_status;
 		}
 	}
 }

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:41:03 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/12 18:12:13 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 #include <stdio.h>
 
-void	print_echo_argv(char **argv, int argc, int i)
+void	print_echo_argv(char **argv, int ac, int i)
 {
 	while (argv[i])
 	{
 		printf("%s", argv[i]);
 		i++;
-		if (i != argc)
+		if (i != ac)
 			printf(" ");
 	}
 }
@@ -41,7 +41,7 @@ void	check_new_line(char **argv, int *i, int *k)
 	}
 }
 
-void	echo(t_parser_node *root)
+void	echo(t_parse_node *root)
 {
 	int	i;
 	int	k;
@@ -55,5 +55,5 @@ void	echo(t_parser_node *root)
 	}
 	if (k == 0)
 		printf("\n");
-	g_lbv.exit_status = 0;
+	global_var.exit_status = 0;
 }

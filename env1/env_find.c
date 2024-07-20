@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_find.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 13:38:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/13 19:01:44 by mel-hous         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_list(void)
 {
 	t_env_node	*head;
 
-	head = g_lbv.list;
+	head = global_var.list;
 	while (head)
 	{
 		if (head->content[0] != '\0')

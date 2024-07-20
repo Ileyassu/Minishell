@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:21:15 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 17:56:22 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	handle_rdr(t_lexer *lexer, t_rdr_node **rdr, t_token token,
 	rdr_addback(rdr, tmp);
 }
 
-t_cmd	*cmd_ccomponents(t_lexer *lexer, t_rdr_node **rdr)
+t_cmd	*cmd_components(t_lexer *lexer, t_rdr_node **rdr)
 {
 	t_token		token;
 	t_cmd		*cmd;

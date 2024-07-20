@@ -6,15 +6,15 @@
 #    By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/19 20:31:13 by ibenaiss          #+#    #+#              #
-#    Updated: 2024/07/19 20:41:58 by ibenaiss         ###   ########.fr        #
+#    Updated: 2024/07/20 21:28:54 by ibenaiss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 
-CFLAGS := -I$(HOME)/.brew/opt/readline/include  -Wall -Wextra -Werror
+CFLAGS :=  -Wall -Wextra -Werror
 
-LDFLAGS := -L$(HOME)/.brew/opt/readline/lib  -lreadline 
+LDFLAGS :=  -lreadline 
 
 NAME := minishell
 

@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 00:58:38 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/20 00:58:41 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:37:46 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*exit_status(char **s)
 	if (!ft_strncmp(*s, "$?", 2))
 	{
 		*s += 2;
-		return (ft_itoa(g_lbv.exit_status / 256));
+		return (ft_itoa(global_var.exit_status / 256));
 	}
 	return (NO_EXPANSION);
 }
@@ -66,7 +66,7 @@ char	*exp_var(char **sp)
 	while (ft_isalnum(s[i]) || s[i] == '_')
 		i++;
 	*sp = s + i;
-	value = env_find2(g_lbv.list, s, i);
+	value = env_find2(global_var.list, s, i);
 	if (!value)
 		return (ft_strdup(""));
 	return (ft_strdup(value));
@@ -84,7 +84,7 @@ char	*lex_var2(char **str, char *full, char *s, char *expnd)
 		s = str[i];
 		while (full && *s)
 		{
-			mode = change_mode2(mode, *s);
+			mode = change_mode2(mode, *s);	
 			expnd = NO_EXPANSION;
 			if (mode != 1)
 			{

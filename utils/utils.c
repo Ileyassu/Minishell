@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:27:27 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:27:29 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 12:53:43 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ void	handler(int signum)
 {
 	if (signum == SIGQUIT)
 	{
-		g_lbv.check_sigquit = 1;
+		global_var.check_sigquit = 1;
 		return ;
 	}
 	if (signum == SIGINT)
 	{
-		g_lbv.exit_status = 256;
-		g_lbv.check_signal = 1;
+		global_var.exit_status = 256;
+		global_var.check_signal = 1;
 		rl_done = 1;
 	}
 }
 
 void	intialize_signal(void)
 {
-	g_lbv.check_sigquit = 0;
+	global_var.check_sigquit = 0;
 	rl_catch_signals = 0;
 	rl_event_hook = readline_hook;
 	if (signal(SIGINT, &handler) == SIG_ERR \
@@ -48,7 +48,7 @@ void	free_env_list(void)
 {
 	t_env_node	*head;
 
-	head = g_lbv.list;
+	head = global_var.list;
 	while (head)
 	{
 		delone_env(head);
@@ -56,7 +56,7 @@ void	free_env_list(void)
 	}
 }
 
-const char	*get_wd(char *path)
+const char	*wild_card_getter(char *path)
 {
 	char	*working_directory;
 	char	*cwd;
@@ -65,8 +65,8 @@ const char	*get_wd(char *path)
 	if (path)
 	{
 		working_directory = ft_strrchr(path, '/');
-		working_directory = ft_strjoin("\e[0;35m➜", working_directory);
-		cwd = ft_strjoin(working_directory, "\e[0m\e[0;35m => \e[0m ");
+		working_directory = ft_strjoin("\e[0;0m➜", working_directory);
+		cwd = ft_strjoin(working_directory, "\e[0m\e[0;0m-> \e[0m ");
 		free(path);
 		free(working_directory);
 	}

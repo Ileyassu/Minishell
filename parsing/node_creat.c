@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:22:01 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static int	av_size(char **av)
 	return (i);
 }
 
-t_parser_node	*node_create(t_cmd **av, t_rdr_node *rdrlist, t_token_type tp)
+t_parse_node	*node_create(t_cmd **av, t_rdr_node *rdrlist, t_token_type tp)
 {
-	t_parser_node	*node;
+	t_parse_node	*node;
 
-	node = malloc(sizeof(t_parser_node));
+	node = malloc(sizeof(t_parse_node));
 	if (!node)
 		return (NULL);
 	node->av = NULL;
@@ -48,8 +48,8 @@ t_parser_node	*node_create(t_cmd **av, t_rdr_node *rdrlist, t_token_type tp)
 	return (node);
 }
 
-void	node_ptr(t_parser_node **node, t_parser_node *left,
-				t_parser_node *right)
+void	node_ptr(t_parse_node **node, t_parse_node *left,
+				t_parse_node *right)
 {
 	(*node)->right = right;
 	(*node)->left = left;

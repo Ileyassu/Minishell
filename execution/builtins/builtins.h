@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:01:21 by zmoussam          #+#    #+#             */
-/*   Updated: 2022/11/14 13:25:16 by zmoussam         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:13:49 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 # include "../../parsing/parser.h"
 # include "../../lexer/lexer.h"
 
-void		echo(t_parser_node *root);
-void		env_cmd(t_parser_node *root);
-void		cd(t_parser_node *root);
+void		echo(t_parse_node *root);
+void		env_cmd(t_parse_node *root);
+void		cd(t_parse_node *root);
 void		go_to_home(char **oldpwd, char **pwd, t_env_node *tmp_home, \
 		char *old_d);
 void		go_to_oldpath(char **oldpwd, char **pwd);
 void		set_oldpwd(char **oldpwd, char *new_oldpwd, int msg);
 void		set_pwd(char **pwd);
-void		pwd(t_parser_node *root);
-void		unset(t_parser_node *root, int index);
-void		exit_cmd(t_parser_node *root);
-void		export(t_parser_node *root);
+void		pwd(t_parse_node *root);
+void		unset(t_parse_node *root, int index);
+void		exit_cmd(t_parse_node *root);
+void		export(t_parse_node *root);
 t_env_node	*get_new_node(char *variable_with_content, int index);
 void		intialise_len_variable(void);
 t_env_node	get_min_variable(t_env_node min);

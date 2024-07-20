@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:18:07 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**copy_env(int size, int index)
 	env = (char **)malloc((size + 1) * sizeof(char *));
 	if (!env)
 		return (printf("minishell: memory was not allocated!!\n"), NULL);
-	head = g_lbv.list;
+	head = global_var.list;
 	while (head && index < size)
 	{
 		temp = ft_strjoin(head->name, "=");

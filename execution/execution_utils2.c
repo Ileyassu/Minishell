@@ -6,7 +6,7 @@
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:20:09 by ibenaiss          #+#    #+#             */
-/*   Updated: 2024/07/19 20:25:56 by ibenaiss         ###   ########.fr       */
+/*   Updated: 2024/07/20 01:15:32 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	execute_file(char *path, char **argv, char **env, int v)
 			if (execve(path, argv, env) == -1)
 				printf("minishell: %s\n", strerror(errno));
 		}
-		waitpid(pid, &g_lbv.exit_status, 0);
+		waitpid(pid, &global_var.exit_status, 0);
 		check_sigquit_();
 		if (v == 2)
 			free(path);
@@ -35,7 +35,7 @@ int	execute_file(char *path, char **argv, char **env, int v)
 	else if (v == 1)
 	{
 		printf("minishell: %s: %s\n", path, strerror(errno));
-		g_lbv.exit_status = 127 * 256;
+		global_var.exit_status = 127 * 256;
 	}
 	return (0);
 }
@@ -80,14 +80,14 @@ void	*searsh_in_path(char *path, char **argv, char **env, char **args)
 	}
 	if (split_content[i] == NULL)
 	{
-		g_lbv.exit_status = 127 * 256;
+		global_var.exit_status = 127 * 256;
 		printf("minishell: %s: command not found\n", argv[0]);
 	}
 	free_path_content(split_content);
 	return ((void *)1);
 }
 
-void	*launch__(t_parser_node *root, char **env)
+void	*launch__(t_parse_node *root, char **env)
 {
 	t_env_node	*path_node;
 	char		**args;
@@ -95,7 +95,7 @@ void	*launch__(t_parser_node *root, char **env)
 	args = (char **)malloc(sizeof(char *) * (root->ac + 1));
 	if (!args)
 		return (printf("minishell: memory was not allocated!!\n"), NULL);
-	path_node = env_find(g_lbv.list, "PATH", 4);
+	path_node = env_find(global_var.list, "PATH", 4);
 	if (path_node)
 	{
 		if (!searsh_in_path(path_node->content, root->av, env, args))
@@ -103,14 +103,14 @@ void	*launch__(t_parser_node *root, char **env)
 	}
 	else
 	{
-		g_lbv.exit_status = 127 * 256;
+		global_var.exit_status = 127 * 256;
 		printf("minishell: %s: No such file or directory\n", root->av[0]);
 	}
 	free(args);
 	return ((void *)1);
 }
 
-void	*launch_executabl(t_parser_node *root, int size)
+void	*launch_executabl(t_parse_node *root, int size)
 {
 	char	**env;
 
