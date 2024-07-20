@@ -5,25 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:43:31 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/15 20:58:21 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:05:13 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:05:15 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include<stdlib.h>
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *src)
 {
-	int		n;
-	char	*ptr;
+	int		i;
+	char	*dest;
 
-	n = ft_strlen((char *)str);
-	ptr = (char *)malloc(n + 1);
-	if (ptr != NULL)
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	dest = malloc(sizeof(char) * i + 1);
+	if (dest == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
 	{
-		ft_memcpy(ptr, str, n);
-		ptr[n] = '\0';
-		return (ptr);
+		dest[i] = src[i];
+		i++;
 	}
-	return (NULL);
+	dest[i] = '\0';
+	return (dest);
 }

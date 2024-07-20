@@ -5,22 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:41:52 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/22 11:45:46 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:02:57 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:02:59 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	char	*ptr;
+	char	*p;
 
-	if (size != 0 && count > SIZE_MAX / size)
+	p = malloc(size * count);
+	if (!p)
 		return (NULL);
-	ptr = malloc(size * count);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	ft_memset(p, 0, size * count);
+	return (p);
 }

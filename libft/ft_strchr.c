@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:41:42 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:01:25 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:05:00 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:05:02 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *str, int c)
+int	ft_strchr(const char *str, char c)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (str[i] != (char)c)
+	while (str[i] != '\0')
 	{
-		if (str[i] == '\0')
-			return (NULL);
+		if (str[i] == c)
+			return (0);
 		i++;
 	}
-	return ((char *)str + i);
+	return (1);
 }

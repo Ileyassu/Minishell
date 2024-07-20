@@ -5,31 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:30 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:03:41 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:04:05 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:04:08 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	size_t	i;
 
+	i = 0;
 	if (!dest && !src)
 		return (NULL);
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if ((s > d) || (d > s + n))
+	if ((unsigned char *)dest > (unsigned char *)src)
 	{
-		ft_memcpy(d, s, n);
+		while (i < len)
+		{
+			((unsigned char *)dest)[len - 1] = ((unsigned char *)src)[len - 1];
+			len--;
+		}
 	}
 	else
 	{
-		while (n-- > 0 && (s + n))
+		while (i < len)
 		{
-			d[n] = s[n];
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
 		}
 	}
 	return (dest);

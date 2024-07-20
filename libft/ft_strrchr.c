@@ -5,25 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:45:44 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 11:08:12 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:06:07 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:06:09 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {
-	size_t	x;
+	char	*dest;
+	int		i;
 
-	x = ft_strlen(str);
-	while (x)
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	while (i >= 0)
 	{
-		if (str[x] == (char)c)
-			return ((char *)str + x);
-		x--;
+		if (str[i] == (char)c)
+		{
+			dest = (char *)&str[i];
+			return (dest);
+		}
+		i--;
 	}
-	if (str[x] == (char)c)
-		return ((char *)str);
+	if (str[i] == '\0' && c == '\0')
+	{
+		dest = (char *) &str[i];
+		return (dest);
+	}
 	return (NULL);
 }

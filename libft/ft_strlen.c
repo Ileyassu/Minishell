@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:43:47 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 21:59:45 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:05:43 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:05:44 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		i++;
 	}

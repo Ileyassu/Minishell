@@ -5,21 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:11 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 11:10:13 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:03:20 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:03:21 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int arg)
+int	ft_isdigit(int c)
 {
-	if (arg >= '0' && arg <= '9')
-	{
+	if (c >= '0' && c <= '9')
 		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }

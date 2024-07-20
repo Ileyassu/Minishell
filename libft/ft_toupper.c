@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:46:10 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 21:58:42 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:06:27 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:06:29 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_toupper(int c)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	else
-		return (c);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

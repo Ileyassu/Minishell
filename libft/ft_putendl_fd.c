@@ -5,15 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:38 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/07 17:51:41 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:04:24 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:04:26 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putstr_fd(s, fd);
+	if (s != NULL)
+	{
+		while (*s)
+		{
+			write(fd, &*s, 1);
+			s++;
+		}
+	}
 	write(fd, "\n", 1);
 }

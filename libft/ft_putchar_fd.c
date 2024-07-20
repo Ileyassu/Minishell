@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:35 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:03:08 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:04:19 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:04:21 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

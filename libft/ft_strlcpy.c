@@ -5,27 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:43:44 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:00:16 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:05:36 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:05:38 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	srclen;
+	size_t	i;
+	size_t	j;
 
-	srclen = ft_strlen((char *)src);
-	if (srclen + 1 < (int)size)
+	i = 0;
+	j = 0;
+	if (size > 0)
 	{
-		ft_memcpy(dest, src, srclen);
-		dest[srclen] = '\0';
+		while (src[j] && j < size - 1)
+		{
+			dest[j] = src[j];
+			j++;
+		}
+		dest[j] = '\0';
 	}
-	else if (size != 0)
-	{
-		ft_memcpy(dest, src, size - 1);
-		dest[size - 1] = '\0';
-	}
-	return (srclen);
+	while (src[i])
+		i++;
+	return (i);
 }

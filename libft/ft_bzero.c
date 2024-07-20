@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:41:49 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:08:17 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:02:53 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:02:54 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include"libft.h"
 
-void	ft_bzero(void *ptr, size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*n;
+	size_t	i;
 
-	n = ptr;
-	while (size > 0)
+	i = 0;
+	while (i < n)
 	{
-		*n++ = 0;
-		size--;
+		((char *)s)[i] = '\0';
+		i++;
 	}
 }
+/* The bzero() function writes n zeroed bytes to the string s. 
+ If n is zero, bzero() does nothing.*/

@@ -5,27 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:46:03 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 21:59:07 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:06:17 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:06:19 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int beg, int len)
 {
-	char	*sub;
+	char	*str;
+	int		i;
 
-	sub = NULL;
-	if (s == NULL)
+	i = 0;
+	if (!s)
 		return (NULL);
-	else if (start >= ft_strlen(s))
+	if (beg >= ft_strlen(s))
 		return (ft_strdup(""));
-	else if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	if (len == -1)
+		len = ft_strlen(s) - (beg);
+	if (len > (int)ft_strlen(&s[beg]))
+		len = ft_strlen(&s[beg]);
+	str = (char *)malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	while (i < len)
+	{
+		str[i] = s[beg + i];
+		i++;
+	}
+	str[i] = 0;
+	return (str);
 }

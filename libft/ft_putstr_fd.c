@@ -5,15 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:44 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:02:00 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:04:39 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:04:41 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	if (s != NULL)
+	{
+		while (*s)
+		{
+			write(fd, &*s, 1);
+			s++;
+		}
+	}
 }

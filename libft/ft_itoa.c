@@ -5,88 +5,64 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:17 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/23 14:42:00 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:03:34 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:03:36 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*checkif_zero(char *ptr)
+static int	ft_len(long int n)
 {
-	ptr = malloc(2);
-	if (ptr == NULL)
-		return (NULL);
-	ptr[0] = '0';
-	ptr[1] = '\0';
-	return (ptr);
+	long int	i;
+
+	i = 1;
+	if (n < 0)
+		n = n * -1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
 }
 
-static char	*isposfunc(long long temp, char *ptr, size_t len, long long nbr)
+static char	*str_cpy(char *str, long int n, int len)
 {
-	while (temp > 0)
-	{
-		temp /= 10;
-		len++;
-	}
-	ptr = (char *)malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ptr += len;
-	*ptr = '\0';
-	while (nbr > 0)
-	{
-		ptr--;
-		*ptr = (nbr % 10) + '0';
-		nbr /= 10;
-	}
-	return (ptr);
-}
+	int		beg;
 
-static char	*isnegfunc(long long temp, char *ptr, size_t len, long long nbr)
-{
-	temp *= -1;
-	nbr *= -1;
-	while (temp > 0)
+	str[len] = '\0';
+	len = len - 1;
+	if (n < 0)
 	{
-		temp /= 10;
-		len++;
+		n *= -1;
+		beg = 1;
+		str[0] = '-';
 	}
-	ptr = (char *)malloc(len + 2);
-	if (ptr == NULL)
-		return (NULL);
-	ptr += len + 1;
-	*ptr = '\0';
-	while (nbr > 0)
+	else
+		beg = 0;
+	while (len >= beg)
 	{
-		ptr--;
-		*ptr = (nbr % 10) + '0';
-		nbr /= 10;
+		str[len] = n % 10 + '0';
+		n = n / 10;
+		len--;
 	}
-	ptr -= 1;
-	*ptr = '-';
-	return (ptr);
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	long long	nbr;
-	char		*ptr;
-	long long	temp;
-	size_t		len;
+	char			*str;
+	int				len;
+	long int		lln;
 
-	ptr = NULL;
-	len = 0;
-	if (n == 0)
-	{
-		ptr = checkif_zero(ptr);
-		return (ptr);
-	}
-	nbr = n;
-	temp = nbr;
-	if (n < 0)
-		ptr = isnegfunc(temp, ptr, len, nbr);
-	else
-		ptr = isposfunc(temp, ptr, len, nbr);
-	return (ptr);
+	lln = n;
+	len = ft_len(lln);
+	if (lln < 0)
+		len = len + 1;
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	str = str_cpy(str, lln, len);
+	return (str);
 }

@@ -5,21 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:41:57 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:05:18 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:03:02 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:03:03 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(const int c)
+int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-	{
+	if ((c >= '0' && c <= '9')
+		|| (c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'))
 		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }

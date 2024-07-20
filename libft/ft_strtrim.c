@@ -5,31 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:45:48 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 21:59:24 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:06:12 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:06:14 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
+
+int	ft_strbegin(char const *s1, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		if (ft_strchr_ex(set, s1[i]) == 0)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_strend(char const *s1, char const *set)
+{
+	int	i;
+
+	i = ft_strlen((char *)s1);
+	while (i >= 0)
+	{
+		if (ft_strchr_ex(set, s1[i]) == 0)
+			break ;
+		i--;
+	}
+	return (i + 1);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		len;
-	char	*result;
+	int		begin;
+	int		end;
+	char	*dest;
 
-	if (s1 == NULL || set == NULL)
+	if (s1 == NULL)
 		return (NULL);
-	while (*s1 && ft_strchr(set, (char)*s1) != NULL)
-		s1++;
-	len = ft_strlen(s1);
-	while (len > 0 && ft_strchr(set, *(s1 + len - 1)) != 0)
-	{
-		len--;
-	}
-	result = (char *)malloc(len + 1);
-	if (!result)
+	if (set == NULL)
+		return ((char *)s1);
+	begin = ft_strbegin(s1, set);
+	end = ft_strend(s1, set);
+	if (begin >= end)
+		return (ft_strdup(""));
+	dest = malloc(sizeof(char) * (end - begin + 1));
+	if (dest == NULL)
 		return (NULL);
-	ft_memcpy(result, (char *)s1, len + 1);
-	result[len] = '\0';
-	return (result);
+	ft_strlcpy(dest, (char *)s1 + begin, end - begin + 1);
+	return (dest);
 }

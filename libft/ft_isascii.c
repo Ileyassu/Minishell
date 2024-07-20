@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:03 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/20 16:49:54 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:03:15 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:03:17 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,7 @@
 
 int	ft_isascii(int c)
 {
-	if (c >= 0 && c < 128)
+	if (c >= 0 && c <= 127)
 		return (1);
-	else
-	{
-		return (0);
-	}
+	return (0);
 }
-/*
-int main() {
-    int currentChar;
-
-    printf("ktb chi haja wla chi haja (Ctrl+D on Unix/Linux):\n");
-
-    while ((currentChar = getchar()) != EOF) {
-        if (ft_isascii(currentChar) == 1) {
-            printf("'%c' is ascii.\n", currentChar);
-        } else if (ft_isascii(currentChar) == 0) {
-            printf("'%c' is not ascii.\n", currentChar);
-        }
-    }
-
-    return 0;
-}
-*/

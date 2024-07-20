@@ -5,36 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:43:38 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:00:49 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:05:25 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:05:26 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	strings_length;
-	size_t	strlen1;
-	size_t	strlen2;
-	char	*ptr;
-	char	*result;
+	char	*s;
+	int		len;
+	int		l1;
+	int		l2;
 
-	if (!s1 && s2)
-		return (ft_strdup(s2));
-	else if (s1 && !s2)
-		return (ft_strdup(s1));
-	else if (!s1 && !s2)
+	if (!s1)
+		s1 = ft_strdup("");
+	if (!s2)
+		s2 = ft_strdup("");
+	l1 = ft_strlen((char *)s1);
+	l2 = ft_strlen((char *)s2);
+	len = l1 + l2;
+	s = malloc((len + 1) * sizeof(char));
+	if (s == NULL)
 		return (NULL);
-	strlen1 = ft_strlen(s1);
-	strlen2 = ft_strlen(s2);
-	strings_length = strlen1 + strlen2;
-	ptr = (char *)malloc(strings_length + 1);
-	if (ptr == NULL)
-		return (NULL);
-	result = ptr;
-	ft_memcpy(ptr, (char *)s1, ft_strlen(s1));
-	ft_memcpy(ptr + strlen1, (char *)s2, strlen2 + 1);
-	*(ptr + strings_length) = '\0';
-	return (result);
+	ft_memmove(s, s1, l1);
+	ft_memmove((s + l1), s2, l2);
+	s[len] = '\0';
+	return (s);
 }

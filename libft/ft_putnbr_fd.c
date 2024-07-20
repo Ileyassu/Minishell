@@ -5,32 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibenaiss <ibenaiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:42:41 by ibenaiss          #+#    #+#             */
-/*   Updated: 2023/11/21 22:02:30 by ibenaiss         ###   ########.fr       */
+/*   Created: 2024/07/20 01:04:29 by ibenaiss          #+#    #+#             */
+/*   Updated: 2024/07/20 01:04:31 by ibenaiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	nbr;
-	int		filedescriptor;
-
-	nbr = n;
-	filedescriptor = fd;
-	if (n < 0)
+	if (n == -2147483648)
 	{
-		ft_putchar_fd('-', filedescriptor);
-		nbr *= -1;
+		write (fd, "-2147483648", 11);
 	}
-	if (nbr <= 9)
+	else if (n >= 0 && n <= 9)
 	{
-		ft_putchar_fd(nbr + '0', filedescriptor);
+		ft_putchar_fd (n + '0', fd);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd ('-', fd);
+		ft_putnbr_fd (n * -1, fd);
 	}
 	else
 	{
-		ft_putnbr_fd(nbr / 10, filedescriptor);
-		ft_putnbr_fd(nbr % 10, filedescriptor);
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
 }
